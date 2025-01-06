@@ -1,20 +1,19 @@
 name: Sample
 
 on:
-  pull_request:
+  push:
 
 jobs:
   sample:
     runs-on: ubuntu-latest
     steps:
-    - name: checkout
-      uses: actions/checkout@v3
+      - name: checkout
+        uses: actions/checkout@v3
 
-    - name: build
-      run: docker compose build
-
-    - name: exec docker container bash
-      run: make bash
-
-    - name: exec date
-      run: date
+      - name: terraform check
+        run: |
+            terraform fmt -recursive -check
+            if [ $? -ne 0 ]; then
+              echo "Terraform formatting issues detected. Please run 'terraform fmt'."
+              exit 1
+            fi

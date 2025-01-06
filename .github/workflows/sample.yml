@@ -11,9 +11,4 @@ jobs:
         uses: actions/checkout@v3
 
       - name: terraform check
-        run: |
-            terraform fmt -recursive -check
-            if [ $? -ne 0 ]; then
-              echo "Terraform formatting issues detected. Please run 'terraform fmt'."
-              exit 1
-            fi
+        run: terraform fmt -recursive -check

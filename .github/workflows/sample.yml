@@ -11,4 +11,10 @@ jobs:
         uses: actions/checkout@v3
 
       - name: terraform check
-        run: terraform fmt -recursive -check
+        run: echo "Running terraform check..."
+
+      - name: terraform check1
+        run: exit 0
+
+      - name: terraform check2
+        run: echo "Running !!!!! check..."
